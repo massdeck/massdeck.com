@@ -334,11 +334,12 @@
 </div>
 
 <script>
-document.getElementById('form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    console.log('Signup:', document.getElementById('email').value);
-    this.style.display = 'none';
-    document.getElementById('done').classList.add('show');
+document.getElementById('form').addEventListener('submit', function() {
+    var form = this;
+    setTimeout(function() {
+        form.style.display = 'none';
+        document.getElementById('done').classList.add('show');
+    }, 500);
 });
 </script>
 </body>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Massdeck — Putting Mass in Motion</title>
+    <meta name="description" content="Massdeck designs and builds motion simulation platforms for flight, racing, and immersive experiences. Putting mass in motion.">
+    <meta name="keywords" content="motion platform, motion simulator, flight simulator motion, racing simulator platform, 2DOF, 3DOF, sim racing, home cockpit motion">
+    <meta property="og:title" content="Massdeck — Putting Mass in Motion">
+    <meta property="og:description" content="Motion simulation platforms for flight, racing, and immersive experiences.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://massdeck.com">
+    <link rel="canonical" href="https://massdeck.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Rajdhani:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #3d8ab0;
+            --bg-deep: #34769a;
+            --card: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.15);
+            --text: #ede8d8;
+            --text-mid: rgba(237, 232, 216, 0.7);
+            --text-dim: rgba(237, 232, 216, 0.4);
+            --accent: #ede8d8;
+            --accent-hover: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #3d8ab0, #3580a8, #4a9bc4, #3d8ab0);
+            background-size: 400% 400%;
+            animation: gradientShift 30s ease infinite;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(61, 138, 176, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 32px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo svg { height: 24px; width: auto; }
+        .nav-logo text { font-family: 'Rajdhani', sans-serif; }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-mid);
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+        .nav-links a:hover { color: var(--text); }
+
+        /* Hero */
+        .hero {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 160px 32px 100px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+        .hero .tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-mid);
+            margin-bottom: 24px;
+            animation: fadeIn 0.8s ease-out 0.1s both;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+        .hero p:not(.tag) {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-mid);
+            max-width: 520px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2.2s forwards;
+        }
+
+        /* Products */
+        .products {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 32px 100px;
+            animation: fadeIn 0.8s ease-out 2.6s both;
+        }
+        .products h2 {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .product-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s ease;
+        }
+        .product-card:hover {
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .product-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: var(--text-mid);
+            flex: 1;
+        }
+        .product-card .card-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-top: 16px;
+        }
+        .product-card .card-tag a {
+            color: var(--text-mid);
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+        .product-card .card-tag a:hover { color: var(--text); }
+
+        /* Signup */
+        .signup {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 32px 60px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out 3s both;
+        }
+        .signup .label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 14px;
+        }
+        .signup form {
+            display: flex;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        .signup input {
+            flex: 1;
+            padding: 13px 16px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.92rem;
+            background: var(--bg-deep);
+            border: 1px solid var(--border);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.25s;
+        }
+        .signup input::placeholder { color: var(--text-dim); }
+        .signup input:focus { border-color: var(--accent); }
+        .signup button {
+            padding: 13px 22px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            background: var(--accent);
+            color: var(--bg-deep);
+            border: 1px solid var(--accent);
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background 0.25s;
+        }
+        .signup button:hover { background: var(--accent-hover); }
+        .signup .done {
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-top: 12px;
+            display: none;
+        }
+        .signup .done.show { display: block; }
+
+        /* Footer */
+        .footer {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 32px 40px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeIn 0.8s ease-out 3.2s both;
+        }
+        .footer p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 0.04em;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 0%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes wordDrop {
+            0% { opacity: 0; transform: translateY(-40px); filter: blur(4px); }
+            50% { opacity: 0.8; filter: blur(1px); }
+            70% { transform: translateY(4px); filter: blur(0); }
+            85% { transform: translateY(-2px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero h1 span {
+            display: inline-block;
+            opacity: 0;
+            animation: wordDrop 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .hero h1 span:nth-child(1) { animation-delay: 0.3s; }
+        .hero h1 span:nth-child(2) { animation-delay: 0.65s; }
+        .hero h1 span:nth-child(3) { animation-delay: 1.0s; }
+        .hero h1 span:nth-child(4) { animation-delay: 1.35s; }
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2rem; }
+            .hero { padding-top: 120px; padding-bottom: 64px; }
+            .product-grid { grid-template-columns: 1fr; }
+            .nav-links { gap: 20px; }
+            .nav-links a { font-size: 0.78rem; }
+            .signup form { flex-direction: column; gap: 8px; }
+            .signup input { border-right: 1px solid var(--border); border-radius: 4px; }
+            .signup button { border-radius: 4px; }
+            .footer { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a class="nav-logo" href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 388.08269252366864 60">
+                <g fill="#ede8d8" transform="matrix(5.639097562403148,0,0,5.639097562403148,-3.4962343861705847,-19.285713616810604)"><path d="M11.07 14.06L11.07 3.42L7.69 3.42L5.87 10.43L3.99 3.42L0.62 3.42L0.62 14.06L3.12 14.06L3.12 8.62L4.65 14.06L7.10 14.06L8.61 8.62L8.61 14.06ZM17.18 11.52C17.18 11.70 17.08 11.80 16.90 11.80L14.85 11.80C14.67 11.80 14.57 11.70 14.57 11.52L14.57 10.95C14.57 10.77 14.67 10.67 14.85 10.67L16.90 10.67C17.08 10.67 17.18 10.77 17.18 10.95ZM17.71 14.06C18.97 14.06 19.60 13.41 19.60 12.12L19.60 7.77C19.60 6.48 18.94 5.84 17.64 5.84L12.49 5.84L12.49 8.13L16.76 8.13C17.04 8.13 17.18 8.27 17.18 8.55L17.18 9.17C17.05 9.11 16.90 9.07 16.72 9.07L13.96 9.07C12.77 9.07 12.17 9.70 12.17 10.98L12.17 12.19C12.17 13.44 12.77 14.06 13.96 14.06ZM26.39 14.06C27.55 14.06 28.13 13.41 28.13 12.12L28.13 10.85C28.13 9.67 27.55 9.09 26.39 9.09L23.31 9.09C23.16 9.09 23.07 9.02 23.07 8.86L23.07 8.37C23.07 8.20 23.16 8.12 23.31 8.12L27.90 8.12L27.90 5.84L22.61 5.84C21.34 5.84 20.71 6.48 20.71 7.76L20.71 9.00C20.71 10.23 21.10 10.79 22.37 10.79L25.44 10.79C25.59 10.79 25.68 10.86 25.68 11.02L25.68 11.51C25.68 11.68 25.59 11.76 25.44 11.76L20.80 11.76L20.80 14.06ZM34.90 14.06C36.06 14.06 36.64 13.41 36.64 12.12L36.64 10.85C36.64 9.67 36.06 9.09 34.90 9.09L31.82 9.09C31.67 9.09 31.58 9.02 31.58 8.86L31.58 8.37C31.58 8.20 31.67 8.12 31.82 8.12L36.41 8.12L36.41 5.84L31.12 5.84C29.85 5.84 29.22 6.48 29.22 7.76L29.22 9.00C29.22 10.23 29.61 10.79 30.88 10.79L33.95 10.79C34.10 10.79 34.19 10.86 34.19 11.02L34.19 11.51C34.19 11.68 34.10 11.76 33.95 11.76L29.32 11.76L29.32 14.06ZM45.19 14.06L45.19 3.42L42.77 3.42L42.77 5.84L39.66 5.84C38.39 5.84 37.74 6.48 37.74 7.77L37.74 12.19C37.74 13.44 38.40 14.06 39.70 14.06ZM42.77 11.63L40.59 11.63C40.31 11.63 40.17 11.48 40.17 11.19L40.17 8.69C40.17 8.41 40.31 8.27 40.59 8.27L42.77 8.27ZM51.39 8.95C51.39 9.13 51.30 9.23 51.11 9.23L49.07 9.23C48.89 9.23 48.79 9.13 48.79 8.95L48.79 8.37C48.79 8.19 48.89 8.09 49.07 8.09L51.11 8.09C51.30 8.09 51.39 8.19 51.39 8.37ZM53.45 14.06L53.45 11.76L49.21 11.76C48.93 11.76 48.79 11.62 48.79 11.34L48.79 10.72C48.92 10.79 49.07 10.82 49.22 10.82L52.01 10.82C53.20 10.82 53.80 10.19 53.80 8.92L53.80 7.71C53.80 6.47 53.20 5.84 52.01 5.84L48.26 5.84C47.00 5.84 46.37 6.48 46.37 7.77L46.37 12.12C46.37 13.41 47.03 14.06 48.33 14.06ZM60.93 14.06L60.93 11.63L57.71 11.63C57.43 11.63 57.29 11.48 57.29 11.19L57.29 8.69C57.29 8.41 57.43 8.27 57.71 8.27L60.90 8.27L60.90 5.84L56.78 5.84C55.51 5.84 54.87 6.48 54.87 7.77L54.87 12.19C54.87 13.44 55.52 14.06 56.83 14.06ZM69.44 14.06L66.70 9.31L68.94 5.84L66.30 5.84L64.33 8.96L64.33 3.42L61.91 3.42L61.91 14.06L64.33 14.06L64.33 10.12L66.47 14.06Z"></path></g>
+            </svg>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#products">Products</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="hero">
+    <p class="tag">Coming Soon</p>
+    <h1><span>Putting</span> <span>mass</span> <span>in</span> <span>motion.</span></h1>
+    <p>Motion simulation platforms engineered for flight, racing, and immersive experiences. From home setups to professional installations.</p>
+</div>
+
+<div class="products" id="products">
+    <h2>Our Products</h2>
+    <div class="product-grid">
+        <div class="product-card">
+            <h3>Motion Platforms</h3>
+            <p>Multi-axis motion bases for home and commercial simulators. Compact, powerful, and built to move.</p>
+            <p class="card-tag">Coming Soon</p>
+        </div>
+        <div class="product-card">
+            <h3>Gaugedeck</h3>
+            <p>A visual gauge creation studio and real-time rendering engine for flight, racing, and any simulator.</p>
+            <p class="card-tag"><a href="https://gaugedeck.com">gaugedeck.com &rarr;</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="signup" id="contact">
+    <p class="label">Stay in the loop</p>
+    <form id="form" action="https://docs.google.com/forms/d/e/1FAIpQLScXg4DMoIQMMh3npaXo6HiPYSLGjWHkHm00DyttoWNjbVpzIQ/formResponse" method="POST" target="hidden_iframe">
+        <input type="email" name="entry.207121553" placeholder="you@email.com" required id="email">
+        <button type="submit">Notify Me</button>
+    </form>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+    <p class="done" id="done">You're on the list. We'll be in touch.</p>
+</div>
+
+<div class="footer">
+    <p>&copy; 2026 Massdeck</p>
+    <p>Los Angeles, CA</p>
+</div>
+
+<script>
+document.getElementById('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    console.log('Signup:', document.getElementById('email').value);
+    this.style.display = 'none';
+    document.getElementById('done').classList.add('show');
+});
+</script>
+</body>
+</html>

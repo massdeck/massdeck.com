@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Massdeck — Putting Mass in Motion</title>
-    <meta name="description" content="Massdeck designs and builds motion simulation platforms for flight, racing, and immersive experiences. Putting mass in motion.">
-    <meta name="keywords" content="motion platform, motion simulator, flight simulator motion, racing simulator platform, 2DOF, 3DOF, sim racing, home cockpit motion">
+    <meta name="description" content="Massdeck designs and builds motion simulation platforms and linear actuators for flight, racing, and immersive experiences. Putting mass in motion.">
+    <meta name="keywords" content="motion platform, motion simulator, flight simulator motion, racing simulator platform, linear actuator, 2DOF, 3DOF, sim racing, home cockpit motion">
     <meta property="og:title" content="Massdeck — Putting Mass in Motion">
-    <meta property="og:description" content="Motion simulation platforms for flight, racing, and immersive experiences.">
+    <meta property="og:description" content="Motion simulation platforms and in-house linear actuators for flight, racing, and immersive experiences.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://massdeck.com">
     <link rel="canonical" href="https://massdeck.com">
@@ -35,8 +35,6 @@
             font-family: 'DM Sans', sans-serif;
             min-height: 100vh;
         }
-
-        /* Nav */
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -69,8 +67,6 @@
             transition: color 0.25s;
         }
         .nav-links a:hover { color: var(--text); }
-
-        /* Hero */
         .hero {
             max-width: 900px;
             margin: 0 auto;
@@ -102,8 +98,6 @@
             opacity: 0;
             animation: fadeIn 1s ease-out 2.2s forwards;
         }
-
-        /* Products */
         .products {
             max-width: 900px;
             margin: 0 auto;
@@ -156,14 +150,6 @@
             color: var(--text-dim);
             margin-top: 16px;
         }
-        .product-card .card-tag a {
-            color: var(--text-mid);
-            text-decoration: none;
-            transition: color 0.25s;
-        }
-        .product-card .card-tag a:hover { color: var(--text); }
-
-        /* Signup */
         .signup {
             max-width: 900px;
             margin: 0 auto;
@@ -221,8 +207,6 @@
             display: none;
         }
         .signup .done.show { display: block; }
-
-        /* Footer */
         .footer {
             max-width: 900px;
             margin: 0 auto;
@@ -239,7 +223,6 @@
             color: var(--text-dim);
             letter-spacing: 0.04em;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -281,7 +264,6 @@
     </style>
 </head>
 <body>
-
 <nav>
     <div class="nav-inner">
         <a class="nav-logo" href="/">
@@ -295,13 +277,11 @@
         </ul>
     </div>
 </nav>
-
 <div class="hero">
     <p class="tag">Coming Soon</p>
     <h1><span>Putting</span> <span>mass</span> <span>in</span> <span>motion.</span></h1>
     <p>Motion simulation platforms engineered for flight, racing, and immersive experiences. From home setups to professional installations.</p>
 </div>
-
 <div class="products" id="products">
     <h2>Our Products</h2>
     <div class="product-grid">
@@ -311,13 +291,12 @@
             <p class="card-tag">Coming Soon</p>
         </div>
         <div class="product-card">
-            <h3>Gaugedeck</h3>
-            <p>A visual gauge creation studio and real-time rendering engine for flight, racing, and any simulator.</p>
-            <p class="card-tag"><a href="https://gaugedeck.com">gaugedeck.com &rarr;</a></p>
+            <h3>Linear Actuators</h3>
+            <p>High-performance linear actuators designed and manufactured in-house for precision motion control.</p>
+            <p class="card-tag">Coming Soon</p>
         </div>
     </div>
 </div>
-
 <div class="signup" id="contact">
     <p class="label">Stay in the loop</p>
     <form id="form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScXg4DMoIQMMh3npaXo6HiPYSLGjWHkHm00DyttoWNjbVpzIQ/formResponse" method="POST" target="hidden_iframe">
@@ -331,12 +310,10 @@
     <iframe name="hidden_iframe" style="display:none;"></iframe>
     <p class="done" id="done">You're on the list. We'll be in touch.</p>
 </div>
-
 <div class="footer">
     <p>&copy; 2026 Massdeck</p>
     <p>Los Angeles, CA</p>
 </div>
-
 <script>
 document.getElementById('form').addEventListener('submit', function() {
     var form = this;
